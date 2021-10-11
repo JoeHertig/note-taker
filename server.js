@@ -31,6 +31,15 @@ app.get("/api/notes", (req, res) => {
   res.json(notes);
 });
 
+app.get("/api/notes/:id", (req, res) => {
+  const result = findById(req.params.id, notes);
+  if (result) {
+    res.json(result);
+  } else {
+    res.send(404);
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`API server now on port ${PORT}!`);
 });
